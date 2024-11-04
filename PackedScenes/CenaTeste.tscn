@@ -1,6 +1,55 @@
-[gd_scene load_steps=2 format=3 uid="uid://m1mtsgns7le0"]
+[gd_scene load_steps=8 format=3 uid="uid://m1mtsgns7le0"]
 
 [ext_resource type="PackedScene" uid="uid://gos0awnsgvaq" path="res://PackedScenes/inimigo.tscn" id="1_3ni4g"]
+[ext_resource type="Texture2D" uid="uid://cnqypsrrxdlkm" path="res://icon.svg" id="2_6ysfw"]
+[ext_resource type="Shader" path="res://Shaders/ShockWave.gdshader" id="2_lyk0s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3klp5"]
+shader = ExtResource("2_lyk0s")
+shader_parameter/strength = 0.08
+shader_parameter/center = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.25
+shader_parameter/aberration = 1.0
+shader_parameter/width = 0.0455
+shader_parameter/feather = 0.135
+
+[sub_resource type="Animation" id="Animation_lpln4"]
+resource_name = "teste"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_2lqoy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/radius")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.25]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l2mah"]
+_data = {
+"RESET": SubResource("Animation_2lqoy"),
+"teste": SubResource("Animation_lpln4")
+}
 
 [node name="Node2D" type="Node2D"]
 
@@ -9,3 +58,27 @@ zoom = Vector2(4, 4)
 process_callback = 0
 
 [node name="Inimigo" parent="." instance=ExtResource("1_3ni4g")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6ysfw")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_3klp5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect"]
+libraries = {
+"": SubResource("AnimationLibrary_l2mah")
+}
+autoplay = "teste"

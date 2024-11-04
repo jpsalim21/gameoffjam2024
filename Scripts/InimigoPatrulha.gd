@@ -1,11 +1,11 @@
 extends InimigoBase
 
-const SPEED = 600.0
+const SPEED = 100.0
 
 func _ready() -> void:
-	multiplicadorTemporal = 0.5
+	multiplicadorTemporal = 1
 
 func _physics_process(delta: float) -> void:
 	# Teste de movimentação
-	velocity = Vector2.RIGHT * SPEED * (delta * multiplicadorTemporal)
+	velocity = Vector2.RIGHT * SPEED * (multiplicadorTemporal)
 	move_and_slide()
