@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://m1mtsgns7le0"]
+
+[ext_resource type="PackedScene" uid="uid://gos0awnsgvaq" path="res://PackedScenes/inimigo.tscn" id="1_3ni4g"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="Inimigo" parent="." instance=ExtResource("1_3ni4g")]
