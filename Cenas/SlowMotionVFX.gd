@@ -3,7 +3,7 @@ extends Node
 @export var player : CharacterBody2D
 @export var tempo : float = 0.1
 
-var listaSprites : Array[Node2D]
+var listaSprites : Array[Node2D] = []
 var timer : Timer
 var index : int = 0
 

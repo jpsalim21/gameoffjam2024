@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://j4c61dyb7sgc"]
+[gd_scene load_steps=5 format=3 uid="uid://j4c61dyb7sgc"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_jwfah"]
 [ext_resource type="Texture2D" uid="uid://cnqypsrrxdlkm" path="res://icon.svg" id="2_i6ck7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sm1rf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3y3b"]
+size = Vector2(80, 80)
 
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(-82, -24)
@@ -16,3 +19,17 @@ shape = SubResource("RectangleShape2D_sm1rf")
 position = Vector2(1.90735e-06, 1.90735e-06)
 scale = Vector2(0.15625, 0.15625)
 texture = ExtResource("2_i6ck7")
+
+[node name="DetectorInimigo" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorInimigo"]
+shape = SubResource("RectangleShape2D_e3y3b")
+
+[node name="TimerDash" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="body_entered" from="DetectorInimigo" to="." method="_detectouInimigo"]
+[connection signal="body_exited" from="DetectorInimigo" to="." method="_inimigoSaiu"]
+[connection signal="timeout" from="TimerDash" to="." method="_on_timer_dash_timeout"]

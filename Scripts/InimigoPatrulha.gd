@@ -2,9 +2,9 @@ extends InimigoBase
 
 const SPEED = 50.0
 
-@export var pontosPatrulha : Array[Node2D]
+@export var pontosPatrulha : Array[Node2D] = []
 
-var ptsPatrulha : PackedVector2Array
+var ptsPatrulha : PackedVector2Array = []
 
 var index : int = 0
 var direcao
