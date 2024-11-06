@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://m1mtsgns7le0"]
+[gd_scene load_steps=17 format=4 uid="uid://m1mtsgns7le0"]
 
 [ext_resource type="PackedScene" uid="uid://gos0awnsgvaq" path="res://PackedScenes/inimigo.tscn" id="1_wfi4q"]
 [ext_resource type="PackedScene" uid="uid://j4c61dyb7sgc" path="res://PackedScenes/Player.tscn" id="2_o5nwd"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Cenas/timerUI.gd" id="6_0jadn"]
 [ext_resource type="Script" path="res://Cenas/SlowMotionVFX.gd" id="6_6i7f3"]
 [ext_resource type="Texture2D" uid="uid://cnqypsrrxdlkm" path="res://icon.svg" id="6_b0knc"]
+[ext_resource type="Script" path="res://Scripts/speed_run_trigger.gd" id="10_ynn4y"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_31ijo"]
 shader = ExtResource("3_sket1")
@@ -132,6 +133,9 @@ sources/0 = SubResource("TileSetAtlasSource_ebo10")
 
 [node name="Node2D" type="Node2D"]
 
+[node name="SpeedRunTrigger" type="Node" parent="."]
+script = ExtResource("10_ynn4y")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-76, -41)
 zoom = Vector2(4, 4)
@@ -182,17 +186,13 @@ libraries = {
 }
 
 [node name="Timer" type="Label" parent="CanvasLayer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
+offset_left = 25.0
+offset_top = 14.0
+offset_right = 328.0
+offset_bottom = 65.0
 theme_override_fonts/font = ExtResource("5_4gl1c")
 theme_override_font_sizes/font_size = 64
 text = "00 : 20 : 000"
-horizontal_alignment = 1
 script = ExtResource("6_0jadn")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

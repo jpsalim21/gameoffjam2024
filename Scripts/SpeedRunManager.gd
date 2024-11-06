@@ -4,7 +4,7 @@ var tempo : float
 const formatacao := "%02d : %02d : %02d"
 
 func _ready() -> void:
-	#set_process(false)
+	set_process(false)
 	tempo = 0
 
 func _process(delta: float) -> void:

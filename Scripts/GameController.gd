@@ -15,4 +15,4 @@ func slowMotion():
 	slowMotionSignal.emit(estaSlow)
 
 #Speedrun
-var speedRunMode := false
+var speedRunMode := true
