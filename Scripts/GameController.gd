@@ -1,9 +1,8 @@
 extends Node
 
+#Slow motion
 var estaSlow := false
-
 signal slowMotionSignal(valor : bool)
-
 func slowMotion():
 	if estaSlow:
 		return
@@ -14,3 +13,6 @@ func slowMotion():
 	InimigoBase.multiplicadorTemporal = 1
 	estaSlow = false
 	slowMotionSignal.emit(estaSlow)
+
+#Speedrun
+var speedRunMode := false
