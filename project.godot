@@ -23,6 +23,10 @@ GameController="*res://Scripts/GameController.gd"
 
 project/assembly_name="GameOffJam2024"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-tabs/plugin.cfg")
+
 [input]
 
 cima={

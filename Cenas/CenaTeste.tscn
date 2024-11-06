@@ -215,3 +215,5 @@ z_index = -1
 position = Vector2(-110, -42)
 scale = Vector2(0.15625, 0.15625)
 texture = ExtResource("6_b0knc")
+
+[node name="Timer" type="Timer" parent="."]

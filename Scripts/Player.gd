@@ -32,7 +32,7 @@ func _inimigoSaiu(body: Node2D) -> void:
 
 func atacarInimigo():
 	if listaInimigos.is_empty(): 
-		print("Não tem ninguém aq")
+		dashing = true
 		return
 	
 	var alvo : InimigoBase = listaInimigos[0]
@@ -46,7 +46,7 @@ func atacarInimigo():
 	direction = alvo.global_position - global_position
 	direction = direction.normalized()
 	dashing = true
-	timer_dash.start()
+	timer_dash.start(0.2)
 	alvo.tomouHit()
 
 func _on_timer_dash_timeout() -> void:
