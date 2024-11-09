@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 	tempo += delta
 
 func getTime() -> String:
-	var msec := fmod(tempo, 1) * 1000
+	var msec := fmod(tempo, 1) * 100
 	var sec := fmod(tempo, 60)
 	var min := tempo / 60
 	var retorno := formatacao % [min, sec, msec]
