@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://de46iv5ks2yau"]
+
+[ext_resource type="Shader" path="res://Shaders/TransicaoShader.gdshader" id="1_81qqm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_85cev"]
+shader = ExtResource("1_81qqm")
+shader_parameter/endFade = 1.0
+shader_parameter/startFade = 0.0
+
+[node name="CanvasLayer" type="CanvasLayer"]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_85cev")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
