@@ -1,20 +1,82 @@
-[gd_scene load_steps=3 format=3 uid="uid://de46iv5ks2yau"]
+[gd_scene load_steps=8 format=3 uid="uid://de46iv5ks2yau"]
 
-[ext_resource type="Shader" path="res://Shaders/TransicaoShader.gdshader" id="1_81qqm"]
+[ext_resource type="Script" path="res://Scripts/TransicaoCena.gd" id="1_g77n2"]
+[ext_resource type="Shader" path="res://Shaders/Transicao2.gdshader" id="3_hglgo"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_85cev"]
-shader = ExtResource("1_81qqm")
-shader_parameter/endFade = 1.0
-shader_parameter/startFade = 0.0
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rench"]
+shader = ExtResource("3_hglgo")
+shader_parameter/transicao = 1.1
+shader_parameter/fade = 0.1
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[sub_resource type="Animation" id="Animation_a3k2w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:material:shader_parameter/transicao")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.1]
+}
+
+[sub_resource type="Animation" id="Animation_a4t3i"]
+resource_name = "Comeca"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:material:shader_parameter/transicao")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.1, -0.1]
+}
+
+[sub_resource type="Animation" id="Animation_8lluk"]
+resource_name = "Termina"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect2:material:shader_parameter/transicao")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.1, 1.1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v2hra"]
+_data = {
+"Comeca": SubResource("Animation_a4t3i"),
+"RESET": SubResource("Animation_a3k2w"),
+"Termina": SubResource("Animation_8lluk")
+}
+
+[node name="TransicaoDeCena" type="CanvasLayer"]
 layer = 10
+script = ExtResource("1_g77n2")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_85cev")
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_rench")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v2hra")
+}
+autoplay = "default"
