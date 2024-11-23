@@ -7,7 +7,7 @@ const float divisoes = 1.0 / 4.0;
 
 void fragment() {
 	float posX = UV.x;
-	
+
 	if(UV.x > endFade){
 		if(UV.x < endFade + fadeStep){
 			COLOR.a = 1.0 - (abs(endFade - UV.x) / fadeStep);
@@ -21,17 +21,17 @@ void fragment() {
 			COLOR.a = 0.0;
 		}
 	}
-	
+
 	/*
 	if(UV.y < divisoes){
 		COLOR.a = 0.0;
 	} else if(UV.y < 2.0 * divisoes){
-		COLOR.a = 1.0; 
+		COLOR.a = 1.0;
 	} else if (UV.y < 3.0 * divisoes){
 		COLOR.a = 0.0;
 	}
 	*/
-	
+
 }
 
 //void light() {

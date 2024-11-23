@@ -19,5 +19,5 @@ var speedRunMode := true
 
 func changeScene(fileName : String):
 	await TransicaoDeCena.comecarTransicao()
-	get_tree().change_scene_to_file(fileName)
+	await get_tree().change_scene_to_file(fileName)
 	TransicaoDeCena.fecharTransicao()

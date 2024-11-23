@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameOffJam2024"
-run/main_scene="res://Cenas/CenaTeste.tscn"
+run/main_scene="res://Cenas/MenuInicial.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -64,5 +64,4 @@ Ataque={
 
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+renderer/rendering_method="mobile"
